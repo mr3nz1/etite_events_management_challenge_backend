@@ -1,6 +1,6 @@
-import { NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 
-async function asyncHandler(cb: Function) {
+function asyncHandler(cb: Function) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await cb(req, res, next);

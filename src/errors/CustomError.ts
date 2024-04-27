@@ -1,3 +1,4 @@
+import { ValidationError } from "joi";
 import { StatusCodes } from "http-status-codes";
 
 interface CustomErrorType {
