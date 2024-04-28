@@ -56,7 +56,14 @@ class UserController {
 
     return res.status(StatusCodes.OK).json({
       status: "Success",
-      data: { user: { id: user._id, name: user.name, email: user.email } },
+      data: {
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          admin: user.admin,
+        },
+      },
     });
   }
 

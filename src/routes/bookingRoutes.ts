@@ -5,20 +5,28 @@ import auth, { clientOnly } from "../middlewares/auth";
 
 const router: Router = Router();
 
+// router.get(
+//   "/:userId/:eventId/get",
+//   asyncHandler(auth),
+//   asyncHandler(BookingController.getBookings)
+// );
+
+router.get(
+  "/:userId/get",
+  asyncHandler(auth),
+  asyncHandler(BookingController.getBookings)
+);
+
+
 router.post(
   "/:eventId/create",
   asyncHandler(clientOnly),
   asyncHandler(BookingController.createBooking)
 );
 
-router.get(
-  "/:eventId/all",
-  asyncHandler(auth),
-  asyncHandler(BookingController.getBookings)
-);
 
 router.get(
-  "/:bookingId/get",
+  "/:bookingId/getBookings",
   asyncHandler(auth),
   asyncHandler(BookingController.getBooking)
 );

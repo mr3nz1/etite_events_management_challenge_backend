@@ -12,7 +12,7 @@ router.post(
 );
 
 router.get("/all", asyncHandler(EventControllers.getEvents));
-router.get("/get/:id", asyncHandler(EventControllers.getEvent));
+router.get("/:id/get", asyncHandler(EventControllers.getEvent));
 
 router.delete(
   "/:id/delete",
@@ -20,7 +20,7 @@ router.delete(
   asyncHandler(EventControllers.deleteEvent)
 );
 router.patch(
-  "/:id/update/",
+  "/:id/update",
   asyncHandler(adminOnly),
   asyncHandler(EventControllers.updateEvent)
 );

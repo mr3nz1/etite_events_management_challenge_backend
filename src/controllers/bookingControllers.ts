@@ -31,6 +31,11 @@ class BookingingController {
       numberOfTickets,
     });
 
+    await event.updateOne({
+      users: [...event.users, userId],
+      boughtTickets: event.boughtTickets + numberOfTickets,
+    });
+
     return res.status(StatusCodes.CREATED).json({
       status: "Success",
       data: {
@@ -40,12 +45,11 @@ class BookingingController {
   }
 
   public async getBookings(req: ProtectedRequest, res: Response) {
-    const { eventId } = req.params;
-    const { userId } = req.user;
+    const { userId } = req.params;
 
-    const bookings = await BookingModel.find({
-      user: userId,
-      event: eventId,
+    const bookings = await BookingModel.find({ user: userId }).populate({
+      path: "event",
+      select: "date title location tickets",
     });
 
     return res.status(StatusCodes.OK).json({
@@ -85,7 +89,7 @@ class BookingingController {
       data: null,
     });
   }
-  
+
   public async updateBooking(req: ProtectedRequest, res: Response) {
     const { bookingId } = req.params;
     const data = await UpdateBookingSchema.validateAsync(req.body);

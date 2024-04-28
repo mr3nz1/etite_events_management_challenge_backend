@@ -1,3 +1,4 @@
+import { required } from "joi";
 import mongoose, { InferSchemaType, Schema, Document } from "mongoose";
 
 const eventSchema = new Schema(
@@ -10,6 +11,10 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    location: {
+      type: String,
+      required: true,
+    },
     date: {
       type: Date,
       required: true,
@@ -18,14 +23,21 @@ const eventSchema = new Schema(
       type: Number,
       required: true,
     },
-    attendees: {
-      type: Number,
-      default: 0,
-    },
     cancelled: {
       type: Boolean,
       default: false,
     },
+    boughtTickets: {
+      type: Number,
+      default: 0,
+    },
+    users: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );

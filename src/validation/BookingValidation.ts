@@ -5,7 +5,7 @@ const CreateBookingSchema: Schema = Joi.object({
 });
 
 const UpdateBookingSchema: Schema = Joi.object({
-  numberOfTickets: Joi.number(),
+  numberOfTickets: Joi.number().greater(0),
   cancelled: Joi.boolean(),
 });
 

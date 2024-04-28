@@ -33,7 +33,10 @@ class EventController {
   public async getEvent(req: Request, res: Response) {
     const { id } = req.params;
 
-    const event = await EventModel.findById(id);
+    const event = await EventModel.findById(id).populate({
+      path: "users",
+      select: "name email",
+    });
 
     if (!event)
       throw new CustomError("No event of given ID", StatusCodes.NOT_FOUND);
