@@ -19,7 +19,7 @@ dotenv.config();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("combined"));
-app.use(cors({ methods: ["POST", "GET", "UPDATE", "DELETE"] }));
+app.use(cors({ methods: ["POST", "GET", "UPDATE", "DELETE", "PATCH"] }));
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/events", eventRoutes);
